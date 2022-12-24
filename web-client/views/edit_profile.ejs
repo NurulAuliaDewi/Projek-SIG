@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
+
+    <title>Edit Profile</title>
+</head>
+
+<body>
+    <style type="text/css">
+        h3 {
+            font-weight: bold;
+            font-size: 28px;
+            margin-left: 12%;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+        }
+
+        .img-profile {
+            cursor: pointer;
+            border-radius: 50% !important;
+        }
+
+        .img-icon {
+            margin-top: 100px;
+            margin-left: -40px;
+            /* margin-right: 130px !important; */
+            position: absolute;
+            text-align: center !important;
+            width: 50px;
+            margin-top: -0.1px;
+        }
+
+
+        input#img {
+            display: none;
+            margin-top: 60px;
+            margin-left: -120px;
+            height: 150px !important;
+            position: absolute;
+            z-index: 999;
+        }
+
+        #inputTag {
+            display: none;
+        }
+
+        .btn-login {
+            width: 230px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            background: #64B5F6;
+            border-radius: 30px;
+            color: white;
+            margin-top: 25px;
+            font-size: 15px;
+        }
+
+        .btn-login:hover {
+            background: #1976D2;
+            color: white;
+        }
+
+        .btn {
+
+            margin-top: 35px;
+        }
+    </style>
+    <div class="container">
+        <div class="tittle d-flex">
+            <a href="home"
+                style="display:inline-block; margin-top: 21px; margin-left: 10px; padding: 0 15px !important;"><i
+                    class="fa-solid fa-circle-chevron-left" style="font-size: 35px; color: black;"></i></a>
+            <h3 style="margin-top:20px;">Edit Profile</h3>
+        </div>
+
+        <form id="form" method="post" enctype="multipart/form-data">
+            <div class="mt-5 d-flex flex-coloum justify-content-center ">
+                <div class="profile-picture">
+                    <img src="<%= foto_pengguna %>" width="120px" height="120px" alt="Avatar" class="img-profile ">
+                    <input id="inputTag" type="file" onchange="previewFile(this);" />
+                    <label for="inputTag">
+                        <img src="/assets/kamera.png" class="img-icon">
+                    </label>
+                </div>
+            </div>
+
+            <div class="content mt-3">
+                <label class="form-label">Nama</label>
+                <input type="text" value="<%= nama_pengguna %>" class="form-control" style="border-color: #64B5F6;">
+                <label class="form-label">Email</label>
+                <input type="text" value="<%= email_pengguna %>" class="form-control" style="border-color: #64B5F6;">
+                <label class="form-label">Password</label>
+                <input type="password" value="<%= password_pengguna %>" class="form-control"
+                    style="border-color: #64B5F6;">
+            </div>
+
+            <center>
+                <div>
+                    <a id="btnSubmit" class="btn btn-login">Simpan</a>
+                </div>
+            </center>
+            <span id="result"></span>
+    </div>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <script>
+        function previewFile(input) {
+            var file = $("input[type=file]").get(0).files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#previewImg").attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        $(document).ready(function () {
+            $("#btnSubmit").click(function (event) {
+                
+                // const username_pengguna = '<%=username_pengguna%>'
+
+                //stop submit the form, we will post it manually.
+                event.preventDefault();
+
+                // Get form
+                var form = $('#form')[0];
+                console.log(form)
+
+                // Create an FormData object 
+                var data = new FormData(form);
+
+                // If you want to add an extra field for the FormData
+                data.append("id_tempat", "This is some extra data, testing");
+
+                // disabled the submit button
+                $("#btnSubmit").prop("disabled", true);
+
+                $.ajax({
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: "http://localhost:3100/updateProfile",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+
+                        $("#result").text(data);
+                        console.log("SUCCESS : ", data);
+                        $("#btnSubmit").prop("disabled", false);
+                        window.location = '/user_info';
+
+                    },
+                    error: function (e) {
+
+                        $("#result").text(e.responseText);
+                        console.log("ERROR : ", e);
+                        $("#btnSubmit").prop("disabled", false);
+
+                    }
+                });
+            })
+
+        });
+    </script>
+</body>
+
+</html>

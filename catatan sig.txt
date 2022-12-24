@@ -1,0 +1,13 @@
+USE CASE
+User admin lapangan mampu menginput titik lokasi outlet pesaing dan memunculkan informasi outlet yang sudah di input.
+User manager dapat melihat informasi titik koordinat, gambar, dan jumlah pesaing di setiap lokasi.
+
+FITUR
+- login (done)
+- register (done)
+- profil (done)
+- edit profil (done)
+- tag lokasi (done)
+- tambah foto (done)
+- upload foto(done)
+- informasi kompetitor

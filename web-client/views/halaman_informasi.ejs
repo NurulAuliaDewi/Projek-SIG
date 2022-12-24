@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./fontawesome/css/all.css">
+  <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!--JQuery-->
+  <!-- <script type="text/javascript" src="https://repo.rachmat.id/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="https://repo.rachmat.id/jquery-ui-1.12.1/jquery-ui.js"></script> -->
+  <title>Informasi</title>
+</head>
+
+<body>
+  <style type="text/css">
+    body {
+      position: relative;
+      /* width: 375px;
+      height: 667px; */
+      background: #FAFAFA;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* .container{
+      position: fixed;
+    } */
+
+    h3 {
+      font-weight: bold;
+      font-size: 28px;
+      margin-left: 12%;
+    }
+
+    .search {
+      /* position: fixed; */
+      width: 100%;
+      height: 41px;
+      left: 20px;
+      margin-top: 24px;
+
+      background: #FFFFFF;
+      box-shadow: 0px 17px 19px rgba(0, 0, 0, 0.11), 0px 2.12866px 2.37909px rgba(0, 0, 0, 0.055);
+      border-radius: 15px;
+    }
+
+    .search input {
+      color: #000000;
+      width: 120%;
+      height: 35px;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      padding-top: 10px;
+      padding-left: 20px;
+    }
+
+    .filter {
+      /* position: fixed; */
+      margin-top: 40px;
+    }
+
+    button {
+      border-radius: 14px;
+      width: 100px;
+      background-color: #64B5F6;
+      border: none;
+    }
+
+    .scrollmenu {
+      background-color: #FAFAFA;
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    .scrollmenu::-webkit-scrollbar {
+      display: none
+    }
+
+    div.scrollmenu>a {
+      background-color: #64B5F6;
+      margin-right: 5px;
+      color: #FFFFFF;
+    }
+
+    div.scrollmenu>a:hover {
+      background-color: #1976D2;
+      color: white;
+    }
+
+    a.rounded {
+      border-radius: 14px !important;
+    }
+
+    a.actived {
+      background-color: #1976D2;
+    }
+
+    .ikon {
+      color: #64B5F6;
+      font-size: 22px;
+      margin-left: 130px;
+    }
+
+    .fa-pen-to-square {
+      margin-right: 15px;
+    }
+
+    .content {
+      margin-top: 30px;
+    }
+
+    .card {
+      padding-top: 8px;
+      box-shadow: 0px 17px 19px rgba(0, 0, 0, 0.11), 0px 2.12866px 2.37909px rgba(0, 0, 0, 0.055);
+      border-radius: 15px;
+    }
+  </style>
+
+  <div class="container">
+    <div class="tittle d-flex">
+      <a href="home" style="display:inline-block; margin-top: 21px; margin-left: 10px; padding: 0 15px !important;"><i
+          class="fa-solid fa-circle-chevron-left" style="font-size: 35px; color: black;"></i></a>
+      <h3 style="margin-top:20px;">Informasi</h3>
+    </div>
+
+    <div class="search d-flex">
+      <input id="auto-complete" type="text" placeholder="Search..." style="color: rgba(134, 134, 134, 1);">
+      <i class="fa-solid fa-magnifying-glass" style="padding-top: 15px; padding-right: 20px; color: #64B5F6;"></i>
+    </div>
+
+    <div class="filter d-flex">
+      <!-- <div class="mt-1 px-3" style="  border-right:1px solid black"> -->
+
+      <img src="./assets/filter.png" style="height: 35px; width: 35px;">
+      <div class="scrollmenu" style="margin-left:20px !important ;">
+        <a href="#" class="btn border px-4 rounded">All</a>
+        <a href="#" class="btn border px-3 rounded">JNE</a>
+        <a href="#" class="btn border px-4 rounded">JNT</a>
+        <a href="#" class="btn border px-4 rounded">SICEPAT</a>
+        <a href="#" class="btn border px4- rounded">Anteraja</a>
+      </div>
+    </div>
+
+    <div class="content">
+      <% datas.forEach((data) => { %>
+      <div class="card my-3">
+        <div class="row g-0">
+          <div class="col-4">
+            <img src="<%=data.gambar%>" class="img-fluid" style="padding-top: 16%;" alt="...">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <a href="detail/<%=data.id_tempat%>" style="color: #64B5F6;">
+                <h5 class="card-title"><%=data.nama_tempat%></h5>
+              </a>
+              <p class="card-text"><small class="text-muted"><%=data.koordinat%></small></p>
+              <div class="ikon">
+                <a href="edit/<%=data.id_tempat%>" style="color: #64B5F6;"><i
+                    class="fa-solid fa-pen-to-square "></i></a>
+                <a href="delete/<%=data.id_tempat%>" style="color: #64B5F6;"><i class="fa-solid fa-trash"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+  <script>
+    var data = "http://localhost:3100/auto-complate";
+    $("#auto-complete").autocomplete({
+        source: data,
+        select: function (event, ui) {
+          console.log(ui)
+          $("#auto-complete").val(ui.item.label);
+          return false;
+        }
+      },
+
+    );
+
+    console.log($("#auto-complete"))
+  </script>
+</body>
+
+</html>
